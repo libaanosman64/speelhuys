@@ -14,8 +14,8 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
+  <nav class="navbar">
+    <div class="navbar">
       <a class="navbar-brand" href="#">Speelhuys</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,6 +28,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Producten</a>
           </li>
+            <li class="nav-item">
+                <a class="nav-link" href="admin/index.php">Inloggen</a>
+            </li>
         </ul>
       </div>
     </div>
