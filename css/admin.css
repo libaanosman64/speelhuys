@@ -95,3 +95,12 @@ body {
     display: block;
     text-align: center;
 }
+.textsuccess{
+    margin-top: 10px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #00b609 ;
+    display: block;
+    text-align: center;
+}

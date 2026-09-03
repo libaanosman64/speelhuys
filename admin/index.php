@@ -59,3 +59,11 @@
         echo 'Uw sessie is verlopen, log opnieuw in.';
     }
     ?>
+</div>
+<div class="textsuccess">
+    <?php 
+    if (isset($_GET['uitgelogd'])) {
+        echo 'U bent uitgelogd.';
+        
+    }
+    ?>
