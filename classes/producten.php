@@ -52,4 +52,42 @@ class Producten
         $sql = "DELETE FROM sets WHERE set_id = '$set_id'";
         $conn->query($sql);
     }
+    public function insert()
+    {
+        $conn = Database::start();
+
+        $setNaam = mysqli_real_escape_string($conn, $this->setNaam);
+        $setDiscription = mysqli_real_escape_string($conn, $this->setDiscription);
+        $Merk_id = mysqli_real_escape_string($conn, $this->Merk_id);
+        $setThema_id = mysqli_real_escape_string($conn, $this->setThema_id);
+        $setPrijs = mysqli_real_escape_string($conn, $this->setPrijs);
+        $setImage = mysqli_real_escape_string($conn, $this->setImage);
+        $setAantal = mysqli_real_escape_string($conn, $this->setAantal);
+        $setLeeftijd = mysqli_real_escape_string($conn, $this->setLeeftijd);
+        $setStukjes = mysqli_real_escape_string($conn, $this->setStukjes);
+
+        $sql = "INSERT INTO sets (
+            set_name,
+            set_description,
+            set_brand_id,
+            set_theme_id,
+            set_price,
+            set_image,
+            set_stock,
+            set_age,
+            set_pieces
+        ) VALUES (
+            '$setNaam',
+            '$setDiscription',
+            '$Merk_id',
+            '$setThema_id',
+            '$setPrijs',
+            '$setImage',
+            '$setAantal',
+            '$setLeeftijd',
+            '$setStukjes'
+        )";
+
+        $conn->query($sql);
+    }
 }

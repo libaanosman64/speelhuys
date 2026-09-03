@@ -1,3 +1,16 @@
+<?php
+include '../classes/Database.php';
+include '../classes/sessie.php';
+
+if (isset($_GET['uitgelogd'])) {
+    if (isset($_COOKIE['speelhuys-session'])) {
+        Sessie::endSessie($_COOKIE['speelhuys-session']);
+    }
+
+    setcookie('speelhuys-session', '', time() - 3600, '/');
+    unset($_COOKIE['speelhuys-session']);
+}
+?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,13 +45,12 @@
 <div class="errortext">
 
     <?php
-    include '../classes/Database.php';
-    include '../classes/sessie.php';
     include '../classes/gebruiker.php';
 
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
     $gebruiker = Gebruiker::findGebruiker($username, $password);
+
     if ($username !== '' && $password !== '') {
         if ($gebruiker === null) {
             echo 'Ongeldige inloggegevens';
@@ -55,6 +67,7 @@
             exit;
         }
     }
+    
     if (isset($_GET['verlopen'])) {
         echo 'Uw sessie is verlopen, log opnieuw in.';
     }
@@ -64,6 +77,5 @@
     <?php 
     if (isset($_GET['uitgelogd'])) {
         echo 'U bent uitgelogd.';
-        
     }
     ?>
