@@ -26,7 +26,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Producten</a>
+            <a class="nav-link" href="overzicht.php">Producten</a>
           </li>
             <li class="nav-item">
                 <a class="nav-link" href="admin/index.php">Inloggen</a>

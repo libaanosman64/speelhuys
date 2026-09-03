@@ -25,7 +25,7 @@
             <a class="nav-link" href="#">Producten</a>
           </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.php">Uitloggen</a>
+                <a class="nav-link" href="index.php?uitgelogd">Uitloggen</a>
             </li>
         </ul>
       </div>
