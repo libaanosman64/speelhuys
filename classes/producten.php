@@ -43,5 +43,13 @@ class Producten
 
         return $producten;
     }
- 
+    public static function deleteProduct($set_id)
+    {
+        $conn = Database::start();
+
+        $set_id = mysqli_real_escape_string($conn, $set_id);
+
+        $sql = "DELETE FROM sets WHERE set_id = '$set_id'";
+        $conn->query($sql);
+    }
 }

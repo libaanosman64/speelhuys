@@ -41,9 +41,10 @@ include '../classes/Database.php';
 include '../classes/producten.php';
 
 
-
+if(isset($_COOKIE['speelhuys-session'])) {
+ 
 echo "<table class='table'>";
-echo "<tr><td>ID</td> <td>Naam</td> <td>Volledig recept</td> <td>Verwijder</td> <td>Edit</td></tr>";
+echo "<tr><td>ID</td> <td>Naam</td> <td>Voorraad</td> <td>Details</td> <td>Verwijder</td> <td>Edit</td></tr>";
 $producten = Producten::findProducten();
 foreach ($producten as $product) {
   echo "<tr>";
@@ -55,6 +56,15 @@ foreach ($producten as $product) {
   echo "<td><a href='edit.php?id=" . $product->set_id . "'>Edit</a></td>";
 }
 echo "</table>";
+}
 if (isset($_GET['deleted'])) {
-  echo "<div class='alert alert-success' role='alert'>Recept succesvol verwijderd.</div>";
+  echo "<div class='alert alert-success' role='alert'>Product succesvol verwijderd.</div>";
+}
+if (isset($_GET['medewerker'])) {
+  echo "<div class='alert alert-danger' role='alert'>U heeft geen toegang tot deze functie.</div>";
+}
+if(!isset($_COOKIE['speelhuys-session'])) {
+  header('Location: index.php?verlopen');
+  exit;
+
 }

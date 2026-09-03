@@ -66,6 +66,26 @@ class Gebruiker
         $conn->close();
         return $gebruiker;
     }
+    public static function findRol($user_id)
+    {
+        $conn = Database::start();
+
+        $user_id = mysqli_real_escape_string($conn, $user_id);
+
+        $sql = "SELECT user_role FROM users WHERE user_id = '" . $user_id . "'";
+        $result = $conn->query($sql);
+
+        $rol = null;
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $rol = $row["user_role"];
+            }
+        }
+
+        $conn->close();
+        return $rol;
+    }
 }
 
 

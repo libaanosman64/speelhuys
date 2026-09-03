@@ -55,4 +55,7 @@
             exit;
         }
     }
+    if (isset($_GET['verlopen'])) {
+        echo 'Uw sessie is verlopen, log opnieuw in.';
+    }
     ?>
