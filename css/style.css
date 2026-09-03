@@ -7,10 +7,47 @@
     top: 0;
     left: 0;
     z-index: 1000;
-    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 40px 20px;
+    display: flex;
+}
 
+body {
+    padding-top: 80px;
+}
 
+.navbar-content {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-toggler {
+    margin-left: auto;
+}
+
+.navbar-collapse {
+    flex-basis: 100%;
+}
+
+.centerlogin {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    padding: 20px;
+    margin: 0;
+    margin-top : 125px;
+}
+.colortext {
+    color: #4bb7ff;
+    margin-bottom: 70px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 60px;
 }

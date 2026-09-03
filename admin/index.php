@@ -8,7 +8,7 @@
 
 <body>
     <nav class="navbar">
-        <div class="navbar">
+        <div class="navbar-content">
             <a class="navbar-brand" href="#">Speelhuys Inlog</a>
             <ul class="navbar-nav"></ul>
         </div>
