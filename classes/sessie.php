@@ -32,6 +32,15 @@
         $conn->query($sql);
     }
 
+    public static function endSessie($sessie_key)
+    {
+        $conn = Database::start();
+        $session_key = mysqli_real_escape_string($conn, $sessie_key);
+        $sql = "DELETE FROM `sessions` WHERE session_key = '$session_key'";
+        $conn->query($sql);
+        $conn->close();
+    }
+
     public static function findSessie($sessie_key)
     {
         $sessie = null;

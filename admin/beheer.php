@@ -10,6 +10,7 @@
 </head>
 
 <body>
+  <a href="toevoegen.php" class="voeg">Toevoegen</a>
   <nav class="navbar">
     <div class="navbar-content">
       <a class="navbar-brand" href="#">Speelhuys</a>
@@ -19,10 +20,9 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="../index.php">Home</a>
-          </li>
+           
           <li class="nav-item">
-            <a class="nav-link" href="#">Producten</a>
+            <a class="nav-link active" aria-current="page" href="beheer.php">Home</a>
           </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?uitgelogd">Uitloggen</a>
