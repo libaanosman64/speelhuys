@@ -41,7 +41,7 @@
     $gebruiker = Gebruiker::findGebruiker($username, $password);
     if ($username !== '' && $password !== '') {
         if ($gebruiker === null) {
-            echo '<div class="errortext">Error: ongeldige inloggegevens</div>';
+            echo 'Ongeldige inloggegevens';
         } else {
             $key = md5(uniqid(rand(), true));
             $session = new Sessie();

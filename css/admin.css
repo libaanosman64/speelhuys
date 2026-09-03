@@ -68,6 +68,7 @@
     font-weight: bold;
     padding: 8px 12px;
     border-radius: 5px;
-    color: #d00 !important;
+    color: #d00 ;
     display: block;
+    text-align: center;
 }
