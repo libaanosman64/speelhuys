@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Keukenprins Inlog</title>
+    <title>Speelhuys Inlog</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/admin.css">
 </head>
@@ -24,9 +24,35 @@
         </form>
     </main>
 
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 
 <div class="errortext">
+
+    <?php
+    include '../classes/Database.php';
+    include '../classes/sessie.php';
+    include '../classes/gebruiker.php';
+
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $gebruiker = Gebruiker::findGebruiker($username, $password);
+    if ($username !== '' && $password !== '') {
+        if ($gebruiker === null) {
+            echo '<div class="errortext">Error: ongeldige inloggegevens</div>';
+        } else {
+            $key = md5(uniqid(rand(), true));
+            $session = new Sessie();
+            $session->sessie_gebruiker_id = $gebruiker->gebruikerid;
+            $session->sessie_key = $key;
+            $session->sessie_start = date('Y-m-d H:i:s');
+            $session->sessie_end = date('Y-m-d H:i:s', strtotime('+1 month'));
+            $session->insert();
+            setcookie('speelhuys-session', $key, strtotime('+1 month'), '/');
+            header('Location: beheer.php');
+            exit;
+        }
+    }
+    ?>
