@@ -61,3 +61,14 @@
     text-decoration: none;
     width: 100%;
 }
+
+
+.errortext{
+    margin-top: 10px;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #d00 ;
+    display: block;
+    text-align: center;
+}
