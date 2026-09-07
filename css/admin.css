@@ -131,3 +131,28 @@ body {
     display: inline-block;
     text-decoration: none;
 }
+.rolTextbox{
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 15px;
+   
+    
+}
+.Labels{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+.rolButton {
+    background-color: #4bb7ff;
+    color: white;
+    border: 2px solid #0077ff;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+    width: 50%;
+    line-height: 50px;
+    height: 50px;
+    margin-top: 20px;
+}

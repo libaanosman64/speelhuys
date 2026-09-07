@@ -86,6 +86,42 @@ class Gebruiker
         $conn->close();
         return $rol;
     }
-}
+    public static function updateRol($user_id, $rol)
+    {
+        $conn = Database::start();
 
+        $user_id = mysqli_real_escape_string($conn, $user_id);
+        $rol = mysqli_real_escape_string($conn, $rol);
+
+        $sql = "UPDATE users SET user_role = '$rol' WHERE user_id = '$user_id'";
+        $conn->query($sql);
+
+        $conn->close();
+    }
+    public static function findAllGebruikers()
+    {
+        $conn = Database::start();
+
+        $sql = "SELECT * FROM users";
+        $result = $conn->query($sql);
+
+        $gebruikers = [];
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $gebruiker = new Gebruiker();
+                $gebruiker->gebruikersnaam = $row["user_username"];
+                $gebruiker->wachtwoord = $row["user_password"];
+                $gebruiker->voornaam = $row["user_firstname"];
+                $gebruiker->achternaam = $row["user_lastname"];
+                $gebruiker->gebruikerid = $row["user_id"];
+                $gebruiker->rol = $row["user_role"];
+                $gebruikers[] = $gebruiker;
+            }
+        }
+
+        $conn->close();
+        return $gebruikers;
+    }
+}
 
