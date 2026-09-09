@@ -84,7 +84,7 @@ $thema = Producten::findThemaById($product->setThema_id);
                                             <h5>Hoeveelheid: <?php echo $product->setAantal; ?><h5>
 
                 </div>
-            </div>S
+            </div>
         </div>
     </div>
 

@@ -1,4 +1,6 @@
 <?php
+include 'classes/database.php';
+include 'classes/producten.php';
 
 
 
@@ -25,10 +27,10 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Producten</a>
+                            <a class="nav-link" href="overzicht.php">Producten</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="admin/index.php">Inloggen</a>
@@ -113,63 +115,22 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-evenly">
-            <div class="col-3">
-                <div class="card h-100 border-shadow" style="width: 18rem;">
-                    <img src="images/sets/smartmax_safari.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Naam</h5>
-                        <a href="detail.php?id=1" class="btn btn-primary">Bekijk</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card h-100 border-shadow" style="width: 18rem;">
-                    <img src="images/sets/smartmax_safari.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Naam</h5>
-                        <a href="detail.php?id=2" class="btn btn-primary">Bekijk</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card h-100 border-shadow" style="width: 18rem;">
-                    <img src="images/sets/smartmax_safari.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Naam</h5>
-                        <a href="detail.php?id=3" class="btn btn-primary">Bekijk</a>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-evenly align-items-begin" style="margin-top: 100;">
-                <div class="col-3">
-                    <div class="card h-100 border-shadow" style="width: 18rem;">
-                        <img src="images/sets/smartmax_safari.png" class="card-img-top" alt="...">
+     <?php
+    $producten = Producten::findProducten();
+    ?>
+        <div class="row g-4" style="margin-top: 100px;">
+            <?php foreach ($producten as $product) { ?>
+                <div class="col-12 col-md-4">
+                    <div class="card h-100 border-shadow w-100">
+                        <img src="" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Naam</h5>
                             <a href="detail.php?id=4" class="btn btn-primary">bekijk</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
-                    <div class="card h-100 border-shadow" style="width: 18rem;">
-                        <img src="images/sets/smartmax_safari.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Naam</h5>
-                            <a href="bestellen.html" class="btn btn-primary">bekijk</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="card h-100 border-shadow" style="width: 18rem;">
-                        <img src="images/sets/smartmax_safari.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Naam</h5>
-                            <a href="bestellen.html" class="btn btn-primary">bekijk</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
+        </div>
             <div class="container" style="margin-top: 25;">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
