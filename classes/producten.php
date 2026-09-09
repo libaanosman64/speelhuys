@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Producten
 {
     public $set_id;
@@ -12,6 +12,12 @@ class Producten
     public $setLeeftijd;
     public $setStukjes;
     public $setVoorraad;
+    public $Merk_naam;
+    public $Merk_logo;
+    public $Thema_id;
+    public $Thema_naam;
+
+
 
     public static function findProducten()
     {
@@ -19,8 +25,7 @@ class Producten
 
         $sql = "SELECT * FROM sets";
         $result = $conn->query($sql);
-
-        $producten = array();
+        $producten = [];
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -36,8 +41,7 @@ class Producten
                 $product->setLeeftijd = $row["set_age"];
                 $product->setStukjes = $row["set_pieces"];
                 $product->setVoorraad = $row["set_stock"];
-
-                array_push($producten, $product);
+                $producten[] = $product;
             }
         }
 
@@ -89,5 +93,91 @@ class Producten
         )";
 
         $conn->query($sql);
+    }
+
+    public static function findProductById($set_id)
+    {
+        $conn = Database::start();
+
+        $sql = "SELECT * FROM sets WHERE set_id = '$set_id'";
+        $result = $conn->query($sql);
+
+        $product = null;
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $product = new Producten();
+                $product->set_id = $row["set_id"];
+                $product->setNaam = $row["set_name"];
+                $product->setDiscription = $row["set_description"];
+                $product->Merk_id = $row["set_brand_id"];
+                $product->setThema_id = $row["set_theme_id"];
+                $product->setPrijs = $row["set_price"];
+                $product->setImage = $row["set_image"];
+                $product->setAantal = $row["set_stock"];
+                $product->setLeeftijd = $row["set_age"];
+                $product->setStukjes = $row["set_pieces"];
+            }
+        }
+        $conn->close();
+        return $product;
+    }
+    public static function findMerkById($Merk_id)
+    {
+        $conn = Database::start();
+
+        $sql = "SELECT * FROM brands WHERE brand_id = '$Merk_id'";
+        $result = $conn->query($sql);
+
+        $merk = null;
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $merk = new Producten();
+                $merk->Merk_id = $row["brand_id"];
+                $merk->Merk_naam = $row["brand_name"];
+                $merk->Merk_logo = $row["brand_logo"];
+            }
+        }
+        $conn->close();
+        return $merk;
+    }
+    public static function findThemas()
+    {
+        $conn = Database::start();
+
+        $sql = "SELECT * FROM themes";
+        $result = $conn->query($sql);
+        $themas = [];
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $thema = new Producten();
+                $thema->Thema_id = $row["theme_id"];
+                $thema->Thema_naam = $row["theme_name"];
+                $themas[] = $thema;
+            }
+        }
+
+        return $themas;
+    }
+    public static function findThemaById($setThema_id)
+    {
+        $conn = Database::start();
+
+        $sql = "SELECT * FROM themes WHERE theme_id = '$setThema_id'";
+        $result = $conn->query($sql);
+
+        $thema = null;
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $thema = new Producten();
+                $thema->Thema_id = $row["theme_id"];
+                $thema->Thema_naam = $row["theme_name"];
+            }
+        }
+        $conn->close();
+        return $thema;
     }
 }

@@ -1,6 +1,10 @@
 <?php
+include 'classes/database.php';
+include 'classes/producten.php';
 
-
+$product = Producten::findProductById($_GET['id'] ?? null);
+$merk = Producten::findMerkById($product->Merk_id);
+$thema = Producten::findThemaById($product->Thema_id);
 
 ?>
 <html>
@@ -18,7 +22,7 @@
     <div class="container">
         <nav class="navbar">
             <div class="navbar">
-                <a class="navbar-brand" href="#">Speelhuys</a>
+                <a class="navbar-brand" href="#"><?php echo $product->setNaam; ?></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -58,29 +62,26 @@
     <div class="container" style="margin-top: 100;">
         <div class="row">
             <div class="col-sm">
-                <h2><b>NaamVanProduct</b>
+                <h2><b><?php echo $product->setNaam; ?></b>
                     <h2>
-                        <img class="imageBox" src="images/sets/smartmax_safari.png" height="500" margin-left: 250; margin-right: 250;>
+                        <img class="imageBox" src="images/sets/<?php echo $product->setImage; ?>" height="500" margin-left: 250; margin-right: 250;>
                         <div class="box" style="margin-top:0" ;>
-                            <h5>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                            <h5>
+                                <?php echo $product->setDiscription; ?>
                                 <h5>
                         </div>
             </div>
             <div class="col-sm">
                 <div class="container" style="margin-top:460" ;>
-                    <img class="imageBox" src="images/logos/smartmax.png" height="50">
-                    <h4><b>$Prijs</b>
+                    <img class="imageBox" src="images/logos/<?php echo $merk->Merk_logo; ?>" height="50">
+                    <h4><b>€<?php echo $product->setPrijs; ?></b>
                         <h4>
                 </div>
                 <div class="box" style="margin-top:0;">
-                    <h5>Thema: Thema<h5>
-                            <h5>Age: Age<h5>
-                                    <h5>stukken: Stukken<h5>
-                                            <h5>Hoeveelheid: Hoeveelheid<h5>
+                    <h5>Thema: <?php echo  $product->setThema_id; ?><h5>
+                            <h5>Age: <?php echo $product->setLeeftijd; ?><h5>
+                                    <h5>stukken: <?php echo $product->setStukjes; ?><h5>
+                                            <h5>Hoeveelheid: <?php echo $product->setAantal; ?><h5>
 
                 </div>
             </div>
@@ -96,3 +97,5 @@
 
 
 </html>
+
+<?php
