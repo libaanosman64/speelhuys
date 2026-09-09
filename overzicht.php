@@ -118,14 +118,15 @@ include 'classes/producten.php';
      <?php
     $producten = Producten::findProducten();
     ?>
+    <div class="container">
         <div class="row g-4" style="margin-top: 100px;">
             <?php foreach ($producten as $product) { ?>
                 <div class="col-12 col-md-4">
-                    <div class="card h-100 border-shadow w-100">
-                        <img src="" class="card-img-top" alt="...">
+                    <div class="card  border-shadow ">
+                        <img src="images/sets/<?php echo $product->setImage; ?>" class="card-img-top images" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Naam</h5>
-                            <a href="detail.php?id=4" class="btn btn-primary">bekijk</a>
+                            <h5 class="card-title"><?php echo $product->setNaam; ?></h5>
+                            <a href="detail.php?id=<?php echo $product->set_id; ?>" class="btn btn-primary">bekijk</a>
                         </div>
                     </div>
                 </div>
@@ -156,3 +157,5 @@ include 'classes/producten.php';
 
 
 </html>
+
+<?php

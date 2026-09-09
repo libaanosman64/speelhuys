@@ -52,28 +52,21 @@ body {
     font-size: 60px;
 }
 
-.box {
 
-    margin-top: 100px;
-    margin-bottom: 100px;
-    padding: 50;
-    background-color:   black;
-    border-style:solid;
-    border-color: gray;
-    border-radius: 10px;
-    border-width: 5;
-    box-shadow: 1;
-    color: white;
-    align-items: center;
+.cards
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+.images
+{
+ width: 100%;
+ height: 180px;
+ object-fit:scale-down ;
 }
 
-.imageBox{
-    background-color:   black;
-    border-color: black;
-    border-radius: 50px;
-    border-width: 4px;
-    box-shadow: 1;
-    border-style: solid;
-    align-items: center;
-
+.card {
+ height: 100%;
 }
