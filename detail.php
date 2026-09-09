@@ -4,7 +4,7 @@ include 'classes/producten.php';
 
 $product = Producten::findProductById($_GET['id'] ?? null);
 $merk = Producten::findMerkById($product->Merk_id);
-$thema = Producten::findThemaById($product->Thema_id);
+$thema = Producten::findThemaById($product->setThema_id);
 
 ?>
 <html>
@@ -78,13 +78,13 @@ $thema = Producten::findThemaById($product->Thema_id);
                         <h4>
                 </div>
                 <div class="box" style="margin-top:0;">
-                    <h5>Thema: <?php echo  $product->setThema_id; ?><h5>
+                    <h5>Thema: <?php echo  $thema->Thema_naam; ?><h5>
                             <h5>Age: <?php echo $product->setLeeftijd; ?><h5>
                                     <h5>stukken: <?php echo $product->setStukjes; ?><h5>
                                             <h5>Hoeveelheid: <?php echo $product->setAantal; ?><h5>
 
                 </div>
-            </div>
+            </div>S
         </div>
     </div>
 

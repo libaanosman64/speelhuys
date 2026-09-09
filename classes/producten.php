@@ -14,7 +14,6 @@ class Producten
     public $setVoorraad;
     public $Merk_naam;
     public $Merk_logo;
-    public $Thema_id;
     public $Thema_naam;
 
 
@@ -153,7 +152,7 @@ class Producten
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $thema = new Producten();
-                $thema->Thema_id = $row["theme_id"];
+                $thema->setThema_id = $row["theme_id"];
                 $thema->Thema_naam = $row["theme_name"];
                 $themas[] = $thema;
             }
@@ -173,7 +172,7 @@ class Producten
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $thema = new Producten();
-                $thema->Thema_id = $row["theme_id"];
+                $thema->setThema_id = $row["theme_id"];
                 $thema->Thema_naam = $row["theme_name"];
             }
         }
