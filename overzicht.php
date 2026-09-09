@@ -119,7 +119,7 @@
                     <img src="images/sets/smartmax_safari.png" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Naam</h5>
-                        <a href="bestellen.html" class="btn btn-primary">Bekijk</a>
+                        <a href="detail.php?id=1" class="btn btn-primary">Bekijk</a>
                     </div>
                 </div>
             </div>
@@ -128,7 +128,7 @@
                     <img src="images/sets/smartmax_safari.png" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Naam</h5>
-                        <a href="bestellen.html" class="btn btn-primary">Bekijk</a>
+                        <a href="detail.php?id=2" class="btn btn-primary">Bekijk</a>
                     </div>
                 </div>
             </div>
@@ -137,7 +137,7 @@
                     <img src="images/sets/smartmax_safari.png" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">Naam</h5>
-                        <a href="bestellen.html" class="btn btn-primary">Bekijk</a>
+                        <a href="detail.php?id=3" class="btn btn-primary">Bekijk</a>
                     </div>
                 </div>
             </div>
@@ -147,7 +147,7 @@
                         <img src="images/sets/smartmax_safari.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Naam</h5>
-                            <a href="bestellen.html" class="btn btn-primary">bekijk</a>
+                            <a href="detail.php?id=4" class="btn btn-primary">bekijk</a>
                         </div>
                     </div>
                 </div>

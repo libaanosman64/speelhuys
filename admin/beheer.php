@@ -57,7 +57,7 @@ foreach ($producten as $product) {
   echo "<td>"  . $product->set_id .  "</td>";
   echo "<td>" .   $product->setNaam . "</td>";
   echo "<td>" . $product->setVoorraad . "</td>";
-  echo "<td><a href='detail.php?id=" . $product->set_id . "'>Bekijk</a></td>";
+  echo "<td><a href= '../detail.php?id=" . $product->set_id . "'>Bekijk</a></td>";
   echo "<td><a href='delete.php?id=" . $product->set_id . "'>Verwijder</a></td>";
   echo "<td><a href='edit.php?id=" . $product->set_id . "'>Edit</a></td>";
 }

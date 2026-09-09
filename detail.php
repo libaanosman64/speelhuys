@@ -24,15 +24,32 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Producten</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="admin/index.php">Inloggen</a>
-                        </li>
+                        <?php if (!isset($_COOKIE['speelhuys-session'])) { ?>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="overzicht.php">Producten</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="admin/index.php">Inloggen</a>
+                            </li>
+                        <?php }  ?>
+                        <?php if (isset($_COOKIE['speelhuys-session'])) { ?>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="admin/beheer.php">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="admin/gebruikers.php">Gebruikers beheren</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="admin/toevoegen.php">Themas en merken bewerken</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="admin/index.php?uitgelogd">Uitloggen</a>
+                            </li>
+                        <?php }  ?>
+
                     </ul>
                 </div>
             </div>
@@ -41,33 +58,35 @@
     <div class="container" style="margin-top: 100;">
         <div class="row">
             <div class="col-sm">
-                <h2><b>NaamVanProduct</b><h2>
-                <img class="imageBox" src="images/sets/smartmax_safari.png"height="500" margin-left: 250; margin-right: 250;>
-                <div class="box" style="margin-top:0";>
-                    <h5>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                    <h5>
-                </div>
+                <h2><b>NaamVanProduct</b>
+                    <h2>
+                        <img class="imageBox" src="images/sets/smartmax_safari.png" height="500" margin-left: 250; margin-right: 250;>
+                        <div class="box" style="margin-top:0" ;>
+                            <h5>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                <h5>
+                        </div>
             </div>
             <div class="col-sm">
-                <div class="container" style="margin-top:460";>
+                <div class="container" style="margin-top:460" ;>
                     <img class="imageBox" src="images/logos/smartmax.png" height="50">
-                    <h4><b>$Prijs</b><h4>
+                    <h4><b>$Prijs</b>
+                        <h4>
                 </div>
                 <div class="box" style="margin-top:0;">
-                        <h5>Thema:     Thema<h5>
-                        <h5>Age:     Age<h5>
-                        <h5>stukken:     Stukken<h5>
-                        <h5>Hoeveelheid:     Hoeveelheid<h5>
+                    <h5>Thema: Thema<h5>
+                            <h5>Age: Age<h5>
+                                    <h5>stukken: Stukken<h5>
+                                            <h5>Hoeveelheid: Hoeveelheid<h5>
 
-                    </div>
                 </div>
             </div>
         </div>
-            
+    </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
