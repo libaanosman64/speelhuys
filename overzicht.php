@@ -116,7 +116,11 @@ include 'classes/producten.php';
             </div>
         </div>
      <?php
-    $producten = Producten::findProducten();
+    $perPagina = 6;
+    $pagina = max(1, (int) ($_GET['page'] ?? 1));
+    $aantalPaginas = max(1, Producten::pages());
+    $pagina = min($pagina, $aantalPaginas);
+    $producten = Producten::findProducten($perPagina, ($pagina - 1) * $perPagina);
     ?>
     <div class="container">
         <div class="row g-4" style="margin-top: 100px;">
@@ -126,7 +130,7 @@ include 'classes/producten.php';
                         <img src="images/sets/<?php echo $product->setImage; ?>" class="card-img-top images" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $product->setNaam; ?></h5>
-                            <a href="detail.php?id=<?php echo $product->set_id; ?>" class="btn btn-primary">bekijk</a>
+                            <a href="detail.php?id=<?php echo $product->set_id; ?>" class="btn btn-primary"> bekijk</a>  prijs: € <?php echo $product->setPrijs ?>
                         </div>
                     </div>
                 </div>
@@ -135,14 +139,15 @@ include 'classes/producten.php';
             <div class="container" style="margin-top: 25;">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        <li class="page-item <?php echo $pagina === 1 ? 'disabled' : ''; ?>">
+                            <a class="page-link" href="?page=<?php echo $pagina - 1; ?>" tabindex="-1">Previous</a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
+                        <?php for ($i = 1; $i <= $aantalPaginas; $i++) {
+                            $active = $i === $pagina ? 'active' : '';
+                            echo "<li class=\"page-item $active\"><a class=\"page-link\" href=\"?page=$i\">$i</a></li>";
+                        } ?>
+                        <li class="page-item <?php echo $pagina === $aantalPaginas ? 'disabled' : ''; ?>">
+                            <a class="page-link" href="?page=<?php echo $pagina + 1; ?>">Next</a>
                         </li>
                     </ul>
                 </nav>

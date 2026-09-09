@@ -82,7 +82,6 @@ $thema = Producten::findThemaById($product->setThema_id);
                             <h5>Age: <?php echo $product->setLeeftijd; ?><h5>
                                     <h5>stukken: <?php echo $product->setStukjes; ?><h5>
                                             <h5>Hoeveelheid: <?php echo $product->setAantal; ?><h5>
-
                 </div>
             </div>
         </div>

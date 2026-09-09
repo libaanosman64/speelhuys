@@ -19,11 +19,14 @@ class Producten
 
 
 
-    public static function findProducten()
+    public static function findProducten($limit = null, $offset = 0)
     {
         $conn = Database::start();
 
-        $sql = "SELECT * FROM sets";
+        $sql = "SELECT * FROM sets ORDER BY set_id DESC";
+        if ($limit !== null) {
+            $sql .= " LIMIT " . $limit . " OFFSET " .  $offset;
+        }
         $result = $conn->query($sql);
         $producten = [];
 
@@ -178,6 +181,16 @@ class Producten
             }
         }
         $conn->close();
-        return $thema;
+        return $thema;  
     }
-}
+
+    public static function pages()
+    {
+        $conn = Database::start();
+        $result = $conn->query("SELECT COUNT(*) AS total FROM sets");
+        $row = $result->fetch_assoc();
+        $conn->close();
+
+        return (int) ceil($row['total'] / 6);
+    }
+}   
