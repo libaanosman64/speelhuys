@@ -16,6 +16,7 @@ class Producten
     public $Merk_logo;
     public $Thema_id;
     public $Thema_naam;
+    
 
 
 
@@ -59,7 +60,7 @@ class Producten
         $sql = "DELETE FROM sets WHERE set_id = '$set_id'";
         $conn->query($sql);
     }
-    public function insert()
+    public function insertProduct()
     {
         $conn = Database::start();
 
@@ -193,4 +194,80 @@ class Producten
 
         return (int) ceil($row['total'] / 6);
     }
+
+    public static function findMerken()
+    {
+        $conn = Database::start();
+
+        $result = $conn->query("SELECT * FROM brands");
+        $merken = [];
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $merk = new Producten();
+                $merk->Merk_id = $row["brand_id"];
+                $merk->Merk_naam = $row["brand_name"];
+                $merk->Merk_logo = $row["brand_logo"];
+                $merken[] = $merk;
+            }
+        }
+
+        $conn->close();
+        return $merken;
+    }
+    public static function filter($zoekterm = '', $themaId = null, $prijsVolgorde = null, $limit = null, $offset = 0)
+    {
+        $conn = Database::start();
+        $zoekterm = mysqli_real_escape_string($conn, trim($zoekterm));
+
+        $voorwaarden = [];
+        if ($zoekterm !== '') {
+            $voorwaarden[] = "set_name LIKE '%$zoekterm%'";
+        }
+        if ($themaId !== null) {
+            $voorwaarden[] = "set_theme_id = " . (int) $themaId;
+        }
+
+        $sql = "SELECT * FROM sets";
+        if (count($voorwaarden) > 0) {
+            $sql .= " WHERE " . implode(" AND ", $voorwaarden);
+        }
+
+        if ($prijsVolgorde === 'hoog-laag') {
+            $sql .= " ORDER BY set_price DESC";
+        } elseif ($prijsVolgorde === 'laag-hoog') {
+            $sql .= " ORDER BY set_price ASC";
+        } else {
+            $sql .= " ORDER BY set_id DESC";
+        }
+
+        if ($limit !== null) {
+            $sql .= " LIMIT " . $limit . " OFFSET " . $offset;
+        }
+
+        $result = $conn->query($sql);
+        $producten = [];
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $product = new Producten();
+                $product->set_id = $row["set_id"];
+                $product->setNaam = $row["set_name"];
+                $product->setDiscription = $row["set_description"];
+                $product->Merk_id = $row["set_brand_id"];
+                $product->setThema_id = $row["set_theme_id"];
+                $product->setPrijs = $row["set_price"];
+                $product->setImage = $row["set_image"];
+                $product->setAantal = $row["set_stock"];
+                $product->setLeeftijd = $row["set_age"];
+                $product->setStukjes = $row["set_pieces"];
+                $product->setVoorraad = $row["set_stock"];
+                $producten[] = $product;
+            }
+        }
+
+        $conn->close();
+        return $producten;
+    }
+
 }   

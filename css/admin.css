@@ -48,14 +48,16 @@ body {
     flex: 1;
     padding: 20px;
     margin: 0;
-    margin-top : 125px;
+    margin-top: 125px;
 }
+
 .colortext {
     color: #4bb7ff;
     margin-bottom: 70px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 60px;
 }
+
 .textbox {
     width: 300px;
     padding: 10px;
@@ -64,8 +66,10 @@ body {
     margin-bottom: 15px;
 
 }
+
 .button {
-    background-color: #4bb7ff;;
+    background-color: #4bb7ff;
+    ;
     color: white;
     border: 2px solid #0077ff;
     border-radius: 5px;
@@ -86,24 +90,26 @@ body {
 }
 
 
-.errortext{
+.errortext {
     margin-top: 10px;
     font-weight: bold;
     padding: 8px 12px;
     border-radius: 5px;
-    color: #d00 ;
+    color: #d00;
     display: block;
     text-align: center;
 }
-.textsuccess{
+
+.textsuccess {
     margin-top: 10px;
     font-weight: bold;
     padding: 8px 12px;
     border-radius: 5px;
-    color: #00b609 ;
+    color: #00b609;
     display: block;
     text-align: center;
 }
+
 .voeg {
     background-color: blue;
     font-size: 18px;
@@ -131,19 +137,22 @@ body {
     display: inline-block;
     text-decoration: none;
 }
-.rolTextbox{
+
+.rolTextbox {
     width: 300px;
     padding: 10px;
     margin-bottom: 15px;
-   
-    
+
+
 }
-.Labels{
+
+.Labels {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 18px;
     margin-top: 50px;
     margin-left: 20px;
 }
+
 .rolButton {
     background-color: #4bb7ff;
     color: white;

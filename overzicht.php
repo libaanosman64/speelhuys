@@ -2,6 +2,13 @@
 include 'classes/database.php';
 include 'classes/producten.php';
 
+$themas = Producten::findThemas();
+$prijsVolgorde = $_GET['prijs'] ?? null;
+$themaId = isset($_GET['thema']) ? (int) $_GET['thema'] : null;
+$zoekterm = trim($_GET['zoek'] ?? '');
+if ($themaId < 1) {
+    $themaId = null;
+}
 
 
 ?>
@@ -52,9 +59,9 @@ include 'classes/producten.php';
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <form class="d-flex">
+                                <form class="d-flex" method="get" action="overzicht.php">
                                     <div class="input-group">
-                                        <input class="form-control form-control-lg" type="search" placeholder="Search" aria-label="Search">
+                                        <input class="form-control form-control-lg" type="search" name="zoek" value="<?= htmlspecialchars($zoekterm, ENT_QUOTES, 'UTF-8') ?>" placeholder="Search" aria-label="Search">
                                         <button class="btn btn-primary px-4" type="submit">
                                             <i class="bi bi-search"></i>
                                         </button>
@@ -73,42 +80,31 @@ include 'classes/producten.php';
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
                             <b>Thema</b>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                <label class="form-check-label" for="exampleRadios1">
-                                    Thema1
-                                </label>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="thema-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Kies een thema
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="thema-dropdown">
+                                    <li><a class="dropdown-item" href="overzicht.php">Alle thema's</a></li>
+                                <?php foreach ($themas as $thema) { ?>
+                                    <li>
+                                        <a class="dropdown-item" href="?thema=<?=($thema->Thema_id) ?>">
+                                            <?=($thema->Thema_naam) ?>
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                                </ul>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                                <label class="form-check-label" for="exampleRadios2">
-                                    Thema2
-                                </label>
+                            <b>Prijs</b>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="prijs-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Sorteer op prijs
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="prijs-dropdown">
+                                    <li><a class="dropdown-item" href="?prijs=hoog-laag">Hoog naar laag</a></li>
+                                    <li><a class="dropdown-item" href="?prijs=laag-hoog">Laag naar hoog</a></li>
+                                </ul>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-                                <label class="form-check-label" for="exampleRadios3">
-                                    Thema3
-                                </label>
-                            </div>
-                            <b>Merk</b>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                <label class="form-check-label" for="exampleRadios1">
-                                    Merk1
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                                <label class="form-check-label" for="exampleRadios2">
-                                    Merk2
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3">
-                                <label class="form-check-label" for="exampleRadios3">
-                                    Merk3
-                                </label>
                             </div>
                         </div>
                     </div>
@@ -118,9 +114,9 @@ include 'classes/producten.php';
      <?php
     $perPagina = 6;
     $pagina = max(1, (int) ($_GET['page'] ?? 1));
-    $aantalPaginas = max(1, Producten::pages());
+    $aantalPaginas = max(1, Producten::pages($themaId, $zoekterm));
     $pagina = min($pagina, $aantalPaginas);
-    $producten = Producten::findProducten($perPagina, ($pagina - 1) * $perPagina);
+    $producten = Producten::filter($zoekterm, $themaId, $prijsVolgorde, $perPagina, ($pagina - 1) * $perPagina);
     ?>
     <div class="container">
         <div class="row g-4" style="margin-top: 100px;">
