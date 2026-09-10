@@ -185,10 +185,32 @@ class Producten
         return $thema;  
     }
 
-    public static function pages()
+    public static function pages($themaId = null, $zoekterm = '', $leeftijd = null)
     {
         $conn = Database::start();
-        $result = $conn->query("SELECT COUNT(*) AS total FROM sets");
+        $voorwaarden = [];
+        if ($themaId !== null) {
+            $voorwaarden[] = "set_theme_id = " . (int) $themaId;
+        }
+        if (trim($zoekterm) !== '') {
+            $zoekterm = mysqli_real_escape_string($conn, trim($zoekterm));
+            $voorwaarden[] = "set_name LIKE '%$zoekterm%'";
+        }
+        if ($leeftijd === '0-3') {
+            $voorwaarden[] = "set_age BETWEEN 0 AND 3";
+        } elseif ($leeftijd === '4-6') {
+            $voorwaarden[] = "set_age BETWEEN 4 AND 6";
+        } elseif ($leeftijd === '7-9') {
+            $voorwaarden[] = "set_age BETWEEN 7 AND 9";
+        } elseif ($leeftijd === '10+') {
+            $voorwaarden[] = "set_age >= 10";
+        }
+
+        $sql = "SELECT COUNT(*) AS total FROM sets";
+        if (count($voorwaarden) > 0) {
+            $sql .= " WHERE " . implode(" AND ", $voorwaarden);
+        }
+        $result = $conn->query($sql);
         $row = $result->fetch_assoc();
         $conn->close();
 
@@ -215,7 +237,7 @@ class Producten
         $conn->close();
         return $merken;
     }
-    public static function filter($zoekterm = '', $themaId = null, $prijsVolgorde = null, $limit = null, $offset = 0)
+    public static function filter($zoekterm = '', $themaId = null, $prijsVolgorde = null, $leeftijd = null, $limit = null, $offset = 0)
     {
         $conn = Database::start();
         $zoekterm = mysqli_real_escape_string($conn, trim($zoekterm));
@@ -226,6 +248,15 @@ class Producten
         }
         if ($themaId !== null) {
             $voorwaarden[] = "set_theme_id = " . (int) $themaId;
+        }
+        if ($leeftijd === '0-3') {
+            $voorwaarden[] = "set_age BETWEEN 0 AND 3";
+        } elseif ($leeftijd === '4-6') {
+            $voorwaarden[] = "set_age BETWEEN 4 AND 6";
+        } elseif ($leeftijd === '7-9') {
+            $voorwaarden[] = "set_age BETWEEN 7 AND 9";
+        } elseif ($leeftijd === '10+') {
+            $voorwaarden[] = "set_age >= 10";
         }
 
         $sql = "SELECT * FROM sets";

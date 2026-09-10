@@ -4,6 +4,7 @@ include 'classes/producten.php';
 
 $themas = Producten::findThemas();
 $prijsVolgorde = $_GET['prijs'] ?? null;
+$leeftijd = $_GET['leeftijd'] ?? null;
 $themaId = isset($_GET['thema']) ? (int) $_GET['thema'] : null;
 $zoekterm = trim($_GET['zoek'] ?? '');
 if ($themaId < 1) {
@@ -105,6 +106,18 @@ if ($themaId < 1) {
                                     <li><a class="dropdown-item" href="?prijs=laag-hoog">Laag naar hoog</a></li>
                                 </ul>
                             </div>
+                            <b>Leeftijd</b>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="leeftijd-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Kies een leeftijd
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="leeftijd-dropdown">
+                                    <li><a class="dropdown-item" href="?leeftijd=0-3">0-3 jaar</a></li>
+                                    <li><a class="dropdown-item" href="?leeftijd=4-6">4-6 jaar</a></li>
+                                    <li><a class="dropdown-item" href="?leeftijd=7-9">7-9 jaar</a></li>
+                                    <li><a class="dropdown-item" href="?leeftijd=10%2B">10 jaar en ouder</a></li>
+                                </ul>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -114,9 +127,9 @@ if ($themaId < 1) {
      <?php
     $perPagina = 6;
     $pagina = max(1, (int) ($_GET['page'] ?? 1));
-    $aantalPaginas = max(1, Producten::pages($themaId, $zoekterm));
+    $aantalPaginas = max(1, Producten::pages($themaId, $zoekterm, $leeftijd));
     $pagina = min($pagina, $aantalPaginas);
-    $producten = Producten::filter($zoekterm, $themaId, $prijsVolgorde, $perPagina, ($pagina - 1) * $perPagina);
+    $producten = Producten::filter($zoekterm, $themaId, $prijsVolgorde, $leeftijd, $perPagina, ($pagina - 1) * $perPagina);
     ?>
     <div class="container">
         <div class="row g-4" style="margin-top: 100px;">
