@@ -1,8 +1,9 @@
 <?php
 include 'classes/database.php';
 include 'classes/producten.php';
+include 'classes/thema.php';
 
-$themas = Producten::findThemas();
+$themas = Thema::findThemas();
 $prijsVolgorde = $_GET['prijs'] ?? null;
 $leeftijd = $_GET['leeftijd'] ?? null;
 $themaId = isset($_GET['thema']) ? (int) $_GET['thema'] : null;
@@ -25,9 +26,9 @@ if ($themaId < 1) {
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid px-0">
         <nav class="navbar">
-            <div class="navbar">
+            <div class="navbar-content">
                 <a class="navbar-brand" href="#">Speelhuys</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

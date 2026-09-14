@@ -1,7 +1,8 @@
-<?php 
+<?php
+include 'classes/database.php';
+include 'classes/producten.php';
 
-
-
+$producten = Producten::findProducten(3);
 ?>
 <html>
 
@@ -13,10 +14,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-  <nav class="navbar">
-    <div class="navbar-content">
-      <a class="navbar-brand" href="#">Speelhuys</a>
+<body class="homepage-page">
+  <div class="container-fluid px-0">
+    <nav class="navbar">
+      <div class="navbar-content">
+        <a class="navbar-brand" href="index.php">Speelhuys</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -33,7 +35,35 @@
             </li>
         </ul>
       </div>
-    </div>
+          </div>
+        </nav>
+      </div>
+
+      <main class="container homepage">
+        <section class="homepage-intro">
+          <h1>Welkom bij Speelhuys</h1>
+          <p>Ontdek leuke bouwsets voor urenlang speelplezier.</p>
+          <a href="overzicht.php" class="btn btn-primary">Bekijk alle producten</a>
+        </section>
+
+        <section class="homepage-products">
+          <h2>Uitgelichte producten</h2>
+          <div class="row g-4">
+            <?php foreach ($producten as $product) { ?>
+              <div class="col-12 col-md-4">
+                <div class="card border-shadow">
+                  <img src="images/sets/<?= ($product->setImage) ?>" class="card-img-top images" alt="<?= htmlspecialchars($product->setNaam, ENT_QUOTES, 'UTF-8') ?>">
+                  <div class="card-body">
+                    <h5 class="card-title"><?=($product->setNaam) ?></h5>
+                    <p class="card-text">€ <?= ($product->setPrijs) ?></p>
+                    <a href="detail.php?id=<?= $product->set_id ?>" class="btn btn-primary">Bekijk product</a>
+                  </div>
+                </div>
+              </div>
+            <?php } ?>
+          </div>
+        </section>
+      </main>
 
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>

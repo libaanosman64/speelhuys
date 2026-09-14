@@ -1,10 +1,11 @@
 <?php
 include 'classes/database.php';
 include 'classes/producten.php';
+include 'classes/thema.php';
 
 $product = Producten::findProductById($_GET['id'] ?? null);
 $merk = Producten::findMerkById($product->Merk_id);
-$thema = Producten::findThemaById($product->setThema_id);
+$thema = Thema::findThemaById($product->setThema_id);
 
 ?>
 <html>
@@ -19,9 +20,9 @@ $thema = Producten::findThemaById($product->setThema_id);
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-fluid px-0">
         <nav class="navbar">
-            <div class="navbar">
+            <div class="navbar-content">
                 <a class="navbar-brand" href="#"><?php echo $product->setNaam; ?></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

@@ -1,12 +1,11 @@
 .navbar {
     background-color: #4bb7ff;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    position: fixed;
+    position: relative;
     padding: 20px;
     width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
+    top: auto;
+    z-index: 1;
     justify-content: space-between;
     align-items: center;
     padding: 40px 20px;
@@ -14,7 +13,15 @@
 }
 
 body {
-    padding-top: 80px;
+    padding-top: 0;
+}
+
+.homepage-page {
+    padding-top: 0;
+}
+
+.homepage-page .navbar {
+    position: relative;
 }
 
 .navbar-content {
@@ -69,4 +76,31 @@ body {
 
 .card {
  height: 100%;
+}
+
+.homepage {
+    padding-top: 20px;
+    padding-bottom: 60px;
+}
+
+.homepage-intro {
+    margin: 40px auto 80px;
+    max-width: 700px;
+    text-align: center;
+}
+
+.homepage-intro h1 {
+    color: #4bb7ff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 48px;
+}
+
+.homepage-intro p {
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+.homepage-products h2 {
+    margin-bottom: 25px;
+    text-align: center;
 }

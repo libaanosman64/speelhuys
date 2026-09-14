@@ -38,7 +38,7 @@ $rol = $sessie ? Gebruiker::findRol($sessie->sessie_gebruiker_id) : null;
                        <a class="nav-link" href="gebruikers.php">Gebruikers beheren</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="toevoegen.php">Themas en merken bewerken</a>
+                        <a class="nav-link" href="toevoegen.php">Themas beheren</a>
                     </li>
                     <li class="nav-item">
                          <a class="nav-link" href="index.php?uitgelogd">Uitloggen</a>

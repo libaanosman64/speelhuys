@@ -99,6 +99,36 @@ class Producten
         $conn->query($sql);
     }
 
+    public function updateProduct()
+    {
+        $conn = Database::start();
+
+        $setNaam = mysqli_real_escape_string($conn, $this->setNaam);
+        $setDiscription = mysqli_real_escape_string($conn, $this->setDiscription);
+        $Merk_id = mysqli_real_escape_string($conn, $this->Merk_id);
+        $setThema_id = mysqli_real_escape_string($conn, $this->setThema_id);
+        $setPrijs = mysqli_real_escape_string($conn, $this->setPrijs);
+        $setImage = mysqli_real_escape_string($conn, $this->setImage);
+        $setAantal = mysqli_real_escape_string($conn, $this->setAantal);
+        $setLeeftijd = mysqli_real_escape_string($conn, $this->setLeeftijd);
+        $setStukjes = mysqli_real_escape_string($conn, $this->setStukjes);
+        $set_id = mysqli_real_escape_string($conn, $this->set_id);
+
+        $sql = "UPDATE sets SET
+            set_name = '$setNaam',
+            set_description = '$setDiscription',
+            set_brand_id = '$Merk_id',
+            set_theme_id = '$setThema_id',
+            set_price = '$setPrijs',
+            set_image = '$setImage',
+            set_stock = '$setAantal',
+            set_age = '$setLeeftijd',
+            set_pieces = '$setStukjes'
+            WHERE set_id = '$set_id'";
+
+        $conn->query($sql);
+    }
+
     public static function findProductById($set_id)
     {
         $conn = Database::start();
@@ -146,45 +176,6 @@ class Producten
         $conn->close();
         return $merk;
     }
-    public static function findThemas()
-    {
-        $conn = Database::start();
-
-        $sql = "SELECT * FROM themes";
-        $result = $conn->query($sql);
-        $themas = [];
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $thema = new Producten();
-                $thema->Thema_id = $row["theme_id"];
-                $thema->Thema_naam = $row["theme_name"];
-                $themas[] = $thema;
-            }
-        }
-
-        return $themas;
-    }
-    public static function findThemaById($setThema_id)
-    {
-        $conn = Database::start();
-
-        $sql = "SELECT * FROM themes WHERE theme_id = '$setThema_id'";
-        $result = $conn->query($sql);
-
-        $thema = null;
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $thema = new Producten();
-                $thema->Thema_id = $row["theme_id"];
-                $thema->Thema_naam = $row["theme_name"];
-            }
-        }
-        $conn->close();
-        return $thema;  
-    }
-
     public static function pages($themaId = null, $zoekterm = '', $leeftijd = null)
     {
         $conn = Database::start();

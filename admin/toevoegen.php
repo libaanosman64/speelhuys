@@ -1,9 +1,10 @@
 <?php
 include '../classes/database.php';
 include '../classes/producten.php';
+include '../classes/thema.php';
 
 $merken = Producten::findMerken();
-$themes = Producten::findThemas();
+$themes = Thema::findThemas();
 
 
 if (isset($_POST["naam"]) && isset($_POST["stukjes"]) && isset($_POST["prijs"]) && isset($_POST["Description"]) && isset($_POST["leeftijd"]) && !empty($_POST["merken"]) && !empty($_POST["thema"]) && !empty($_FILES["setImage"]["name"])) {
@@ -71,7 +72,7 @@ if (isset($_POST["naam"]) && isset($_POST["stukjes"]) && isset($_POST["prijs"]) 
             <a class="nav-link" href="gebruikers.php">Gebruikers beheren</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="toevoegen.php">Themas en merken bewerken</a>
+            <a class="nav-link" href="themaBeheer.php">Themas beheren</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="index.php?uitgelogd">Uitloggen</a>
