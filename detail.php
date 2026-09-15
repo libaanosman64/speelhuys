@@ -1,10 +1,11 @@
 <?php
 include 'classes/database.php';
 include 'classes/producten.php';
+include 'classes/merk.php';
 include 'classes/thema.php';
 
 $product = Producten::findProductById($_GET['id'] ?? null);
-$merk = Producten::findMerkById($product->Merk_id);
+$merk = Merk::findMerkById($product->Merk_id);
 $thema = Thema::findThemaById($product->setThema_id);
 
 ?>

@@ -30,7 +30,10 @@ $melding = '';
 $meldingType = 'success';
 
 if (isset($_POST['actie']) && $_POST['actie'] === 'toevoegen') {
-	if (Thema::insertThema($_POST['naam'] ?? '')) {
+	$thema = new Thema();
+	$thema->Thema_naam = $_POST['naam'] ?? '';
+	if ($thema->Thema_naam !== '') {
+		$thema->insertThema();
 		$melding = 'Thema succesvol toegevoegd.';
 	} else {
 		$melding = 'Het thema kon niet worden toegevoegd.';
@@ -96,28 +99,18 @@ $themas = Thema::findThemas();
 			</div>
 		</form>
 
-		<div class="table-responsive">
-			<table class="table table-striped align-middle">
-				<thead>
-					<tr><th>ID</th><th>Naam</th><th>Actie</th></tr>
-				</thead>
-				<tbody>
-					<?php foreach ($themas as $thema) { ?>
-						<tr>
-							<td><?= $thema->Thema_id ?></td>
-							<td><?= ($thema->Thema_naam) ?></td>
-							<td>
-								<form method="post">
-									<input type="hidden" name="actie" value="verwijderen">
-									<input type="hidden" name="thema_id" value="<?= (int) $thema->Thema_id ?>">
-									<button class="btn btn-outline-danger btn-sm" type="submit">Verwijderen</button>
-								</form>
-							</td>
-						</tr>
-					<?php } ?>
-				</tbody>
-			</table>
-		</div>
+		<?php
+		echo "<table class='table'>";
+		echo "<tr><td>ID</td><td>Naam</td><td>Verwijder</td></tr>";
+		foreach ($themas as $thema) {
+			echo "<tr>";
+			echo "<td>" . $thema->Thema_id . "</td>";
+			echo "<td>" . $thema->Thema_naam . "</td>";
+			echo "<td><a href='themaDelete.php?id=" . $thema->Thema_id . "'>Verwijder</a></td>";
+			echo "</tr>";
+		}
+		echo "</table>";
+		?>
 	</main>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>

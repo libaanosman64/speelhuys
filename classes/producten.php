@@ -156,26 +156,6 @@ class Producten
         $conn->close();
         return $product;
     }
-    public static function findMerkById($Merk_id)
-    {
-        $conn = Database::start();
-
-        $sql = "SELECT * FROM brands WHERE brand_id = '$Merk_id'";
-        $result = $conn->query($sql);
-
-        $merk = null;
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $merk = new Producten();
-                $merk->Merk_id = $row["brand_id"];
-                $merk->Merk_naam = $row["brand_name"];
-                $merk->Merk_logo = $row["brand_logo"];
-            }
-        }
-        $conn->close();
-        return $merk;
-    }
     public static function pages($themaId = null, $zoekterm = '', $leeftijd = null)
     {
         $conn = Database::start();
@@ -208,26 +188,6 @@ class Producten
         return (int) ceil($row['total'] / 6);
     }
 
-    public static function findMerken()
-    {
-        $conn = Database::start();
-
-        $result = $conn->query("SELECT * FROM brands");
-        $merken = [];
-
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $merk = new Producten();
-                $merk->Merk_id = $row["brand_id"];
-                $merk->Merk_naam = $row["brand_name"];
-                $merk->Merk_logo = $row["brand_logo"];
-                $merken[] = $merk;
-            }
-        }
-
-        $conn->close();
-        return $merken;
-    }
     public static function filter($zoekterm = '', $themaId = null, $prijsVolgorde = null, $leeftijd = null, $limit = null, $offset = 0)
     {
         $conn = Database::start();

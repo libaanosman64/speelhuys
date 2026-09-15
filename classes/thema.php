@@ -24,21 +24,13 @@ class Thema
         return $themas;
     }
 
-    public static function insertThema($naam)
+    public function insertThema()
     {
         $conn = Database::start();
-        $naam = mysqli_real_escape_string($conn, ($naam));
-
-        if ($naam === '') {
-            $conn->close();
-            return false;
-        }
+        $naam = mysqli_real_escape_string($conn, $this->Thema_naam);
 
         $sql = "INSERT INTO themes (theme_name) VALUES ('$naam')";
-        $result = $conn->query($sql);
-        $conn->close();
-
-        return $result;
+        $conn->query($sql);
     }
 
     public static function deleteThema($themaId)
