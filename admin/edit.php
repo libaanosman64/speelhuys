@@ -62,6 +62,9 @@ if (isset($_POST['naam'], $_POST['stukjes'], $_POST['prijs'], $_POST['Descriptio
           <li class="nav-item">
             <a class="nav-link" href="toevoegen.php">Product toevoegen</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="merkBeheer.php">Merken beheren</a>
+          </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?uitgelogd">Uitloggen</a>
             </li>

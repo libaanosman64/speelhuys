@@ -25,10 +25,12 @@
           </li>
             <li class="nav-item">
                    <a class="nav-link" href="gebruikers.php">Gebruikers beheren</a>
-          
             </li>
           <li class="nav-item">
             <a class="nav-link" href="themaBeheer.php">Themas beheren</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="merkBeheer.php">Merken beheren</a>
           </li>
           <li class="nav-item">
                <a class="nav-link" href="index.php?uitgelogd">Uitloggen</a>

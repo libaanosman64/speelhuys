@@ -6,23 +6,23 @@ include '../classes/gebruiker.php';
 include '../classes/sessie.php';
 
 if (!isset($_COOKIE['speelhuys-session'])) {
-		header('Location: index.php?verlopen');
-		exit;
+	header('Location: index.php?verlopen');
+	exit;
 }
 
 $sessie = Sessie::findSessie($_COOKIE['speelhuys-session']);
 $rol = $sessie ? Gebruiker::findRol($sessie->sessie_gebruiker_id) : null;
 
 if ($rol !== 'admin') {
-		header('Location: beheer.php?medewerker');
-		exit;
+	header('Location: beheer.php?medewerker');
+	exit;
 }
 $sessie = Sessie::findSessie($_COOKIE['speelhuys-session']);
 $rol = $sessie ? Gebruiker::findRol($sessie->sessie_gebruiker_id) : null;
 
 if ($rol !== 'admin') {
-    header('Location: beheer.php?medewerker');
-    exit;
+	header('Location: beheer.php?medewerker');
+	exit;
 }
 
 
@@ -54,6 +54,7 @@ $themas = Thema::findThemas();
 ?>
 <!doctype html>
 <html lang="nl">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,6 +62,7 @@ $themas = Thema::findThemas();
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="../css/admin.css">
 </head>
+
 <body>
 	<nav class="navbar">
 		<div class="navbar-content">
@@ -70,10 +72,21 @@ $themas = Thema::findThemas();
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="beheer.php">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="gebruikers.php">Gebruikers beheren</a></li>
-					<li class="nav-item"><a class="nav-link active" href="themaBeheer.php">Themas beheren</a></li>
-					<li class="nav-item"><a class="nav-link" href="index.php?uitgelogd">Uitloggen</a></li>
+					<li
+						class="nav-item"><a class="nav-link" href="beheer.php">Home</a>
+					</li>
+					<li
+						class="nav-item"><a class="nav-link" href="gebruikers.php">Gebruikers beheren</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="merkBeheer.php">Merken beheren</a>
+					</li>
+					<li
+						class="nav-item"><a class="nav-link active" href="themaBeheer.php">Themas beheren</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="index.php?uitgelogd">Uitloggen</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -83,7 +96,7 @@ $themas = Thema::findThemas();
 		<h1>Thema's beheren</h1>
 
 		<?php if ($melding !== '') { ?>
-			<div class="alert alert-<?=($meldingType) ?>" role="alert">
+			<div class="alert alert-<?= ($meldingType) ?>" role="alert">
 				<?= ($melding) ?>
 			</div>
 		<?php } ?>
@@ -114,4 +127,5 @@ $themas = Thema::findThemas();
 	</main>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

@@ -36,8 +36,9 @@ if (isset($_POST['actie']) && $_POST['actie'] === 'toevoegen') {
         $melding = 'Het merk kon niet worden toegevoegd.';
         $meldingType = 'danger';
     }
-} elseif (isset($_POST['actie']) && $_POST['actie'] === 'verwijderen') {
-    if (Merk::deleteMerk($_POST['merk_id'] ?? 0)) {
+} elseif (($_POST['actie'] ?? $_GET['actie'] ?? '') === 'verwijderen') {
+    $merkId = $_POST['merk_id'] ?? $_GET['merk_id'] ?? 0;
+    if (Merk::deleteMerk($merkId)) {
         $melding = 'Merk succesvol verwijderd.';
     } else {
         $melding = 'Dit merk kan niet worden verwijderd zolang er producten aan gekoppeld zijn.';
@@ -111,11 +112,7 @@ $merken = Merk::findMerken();
                             <td><?= ($merk->Merk_naam) ?></td>
                             <td><?= ($merk->Merk_logo) ?></td>
                             <td>
-                                <form method="post">
-                                    <input type="hidden" name="actie" value="verwijderen">
-                                    <input type="hidden" name="merk_id" value="<?= (int) $merk->Merk_id ?>">
-                                    <button class="btn btn-outline-danger btn-sm" type="submit">Verwijderen</button>
-                                </form>
+                                <a href="merkBeheer.php?actie=verwijderen&amp;merk_id=<?=$merk->Merk_id ?>">Verwijderen</a>
                             </td>
                         </tr>
                     <?php } ?>

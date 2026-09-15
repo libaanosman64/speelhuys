@@ -35,13 +35,16 @@ $rol = $sessie ? Gebruiker::findRol($sessie->sessie_gebruiker_id) : null;
                         <a class="nav-link active" aria-current="page" href="beheer.php">Home</a>
                     </li>
                     <li class="nav-item">
-                       <a class="nav-link" href="gebruikers.php">Gebruikers beheren</a>
+                        <a class="nav-link" href="gebruikers.php">Gebruikers beheren</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="toevoegen.php">Themas beheren</a>
                     </li>
                     <li class="nav-item">
-                         <a class="nav-link" href="index.php?uitgelogd">Uitloggen</a>
+                        <a class="nav-link" href="merkBeheer.php">Merken beheren</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php?uitgelogd">Uitloggen</a>
                     </li>
                 </ul>
             </div>
@@ -74,7 +77,7 @@ if (isset($_COOKIE['speelhuys-session'])) {
         exit;
     }
 
-    if($rol !== 'admin') {
+    if ($rol !== 'admin') {
         header('Location: beheer.php?medewerker');
         exit;
     }

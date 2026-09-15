@@ -75,6 +75,9 @@ if (isset($_POST["naam"]) && isset($_POST["stukjes"]) && isset($_POST["prijs"]) 
           <li class="nav-item">
             <a class="nav-link" href="themaBeheer.php">Themas beheren</a>
           </li>
+           <li class="nav-item">
+            <a class="nav-link" href="merkBeheer.php">Merken beheren</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="index.php?uitgelogd">Uitloggen</a>
           </li>
