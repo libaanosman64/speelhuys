@@ -100,25 +100,20 @@ $merken = Merk::findMerken();
             </div>
         </form>
 
-        <div class="table-responsive">
-            <table class="table table-striped align-middle">
-                <thead>
-                    <tr><th>ID</th><th>Naam</th><th>Logo</th><th>Actie</th></tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($merken as $merk) { ?>
-                        <tr>
-                            <td><?= $merk->Merk_id ?></td>
-                            <td><?= ($merk->Merk_naam) ?></td>
-                            <td><?= ($merk->Merk_logo) ?></td>
-                            <td>
-                                <a href="merkBeheer.php?actie=verwijderen&amp;merk_id=<?=$merk->Merk_id ?>">Verwijderen</a>
-                            </td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
+        <?php
+        echo "<table class='table table-striped align-middle'>";
+        echo "<tr><th>ID</th><th>Naam</th><th>Logo</th><th>Edit</th><th>Verwijder</th></tr>";
+        foreach ($merken as $merk) {
+            echo "<tr>";
+            echo "<td>" . $merk->Merk_id . "</td>";
+            echo "<td>" . $merk->Merk_naam . "</td>";
+            echo "<td>" . $merk->Merk_logo . "</td>";
+            echo "<td><a href='merkEdit.php?id=" . $merk->Merk_id . "'>Edit</a></td>";
+            echo "<td><a href='merkBeheer.php?actie=verwijderen&merk_id=" . $merk->Merk_id . "'>Verwijder</a></td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+        ?>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>

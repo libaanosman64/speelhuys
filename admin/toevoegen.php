@@ -90,9 +90,9 @@ if (isset($_POST["naam"]) && isset($_POST["stukjes"]) && isset($_POST["prijs"]) 
       <div class="col-md-8">
         <h2>Product toevoegen</h2>
         <form method="POST" action="toevoegen.php" enctype="multipart/form-data">
-          <input type="text" class="textboxName" id="naam" name="naam" placeholder="productnaam" required><br>
-          <input type="number" class="textboxName" id="leeftijd" name="leeftijd" placeholder="leeftijd" required><br>
-          <input type="number" class="textboxName" id="stukjes" name="stukjes" placeholder="aantal stukjes" required><br>
+          <input type="text" class="textboxName" id="naam" name="naam" placeholder="productnaam" required><br><br>
+          <input type="number" class="textboxName" id="leeftijd" name="leeftijd" placeholder="leeftijd" required><br><br>
+          <input type="number" class="textboxName" id="stukjes" name="stukjes" placeholder="aantal stukjes" required><br><br>
           <input type="number" class="textboxName" id="aantal" name="aantal" placeholder="aantal" required><br><br>
           <input type="number" class="textboxName" id="prijs" name="prijs" placeholder="prijs" required><br><br>
           <select name="merken" id="merk-select" required>
@@ -108,8 +108,8 @@ if (isset($_POST["naam"]) && isset($_POST["stukjes"]) && isset($_POST["prijs"]) 
           <select name="thema" id="thema-select" required>
             <option value="">-- kies een thema --</option>
             <?php foreach ($themes as $theme) { ?>
-              <option value="<?=($theme->Thema_id) ?>">
-                <?=($theme->Thema_naam) ?>
+              <option value="<?=$theme->Thema_id ?>">
+                <?=$theme->Thema_naam ?>
               </option>
             <?php } ?>
           </select>
@@ -118,9 +118,6 @@ if (isset($_POST["naam"]) && isset($_POST["stukjes"]) && isset($_POST["prijs"]) 
           <div class="form-group">
             <textarea class="jqte" id="Description" name="Description" required></textarea>
           </div>
-          <br>
-          Logo:<br>
-          <input type="file" id="logo" name="logo" />
           <br>
           Set afbeelding:<br>
           <input type="file" id="setImage" name="setImage" />

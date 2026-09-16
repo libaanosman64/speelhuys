@@ -77,4 +77,20 @@ class Merk
         $conn->close();
         return $merk;
     }
+
+    public function updateMerk()
+    {
+        $conn = Database::start();
+
+        $naam = mysqli_real_escape_string($conn, $this->Merk_naam);
+        $logo = mysqli_real_escape_string($conn, $this->Merk_logo ?? '');
+        $id = mysqli_real_escape_string($conn, $this->Merk_id);
+
+        $sql = "UPDATE brands SET
+            brand_name = '$naam',
+            brand_logo = '$logo'
+            WHERE brand_id = '$id'";
+
+        $conn->query($sql);
+    }
 }

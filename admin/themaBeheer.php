@@ -114,12 +114,13 @@ $themas = Thema::findThemas();
 
 		<?php
 		echo "<table class='table'>";
-		echo "<tr><td>ID</td><td>Naam</td><td>Verwijder</td></tr>";
+		echo "<tr><td>ID</td><td>Naam</td><td>Verwijder</td><td>edit</td></tr>";
 		foreach ($themas as $thema) {
 			echo "<tr>";
 			echo "<td>" . $thema->Thema_id . "</td>";
 			echo "<td>" . $thema->Thema_naam . "</td>";
 			echo "<td><a href='themaDelete.php?id=" . $thema->Thema_id . "'>Verwijder</a></td>";
+			echo "<td><a href='themaEdit.php?id=" . $thema->Thema_id . "'>Edit</a></td>";
 			echo "</tr>";
 		}
 		echo "</table>";

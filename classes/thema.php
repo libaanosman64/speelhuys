@@ -73,4 +73,18 @@ class Thema
         $conn->close();
         return $thema;
     }
+
+    public function updateThema()
+    {
+        $conn = Database::start();
+
+        $naam = mysqli_real_escape_string($conn, $this->Thema_naam);
+        $id = mysqli_real_escape_string($conn, $this->Thema_id);
+
+        $sql = "UPDATE themes SET
+            theme_name = '$naam'
+            WHERE theme_id = '$id'";
+
+        $conn->query($sql);
+    }
 }

@@ -105,10 +105,10 @@ if (isset($_POST['naam'], $_POST['stukjes'], $_POST['prijs'], $_POST['Descriptio
           <br><br>
 
           <div class="form-group">
-            <textarea class="jqte" name="Description" required><?=($product->setDiscription) ?></textarea>
+            <textarea class="jqte" name="Description" required><?=$product->setDiscription ?></textarea>
           </div>
           <br>
-          Huidige afbeelding: <?=($product->setImage) ?><br>
+          Huidige afbeelding: <?=$product->setImage?><br>
           Nieuwe set afbeelding<br>
           <input type="file" name="setImage">
           <br><br>
