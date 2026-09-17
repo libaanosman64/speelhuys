@@ -52,10 +52,10 @@ $producten = Producten::findProducten(3);
             <?php foreach ($producten as $product) { ?>
               <div class="col-12 col-md-4">
                 <div class="card border-shadow">
-                  <img src="images/sets/<?= ($product->setImage) ?>" class="card-img-top images" alt="<?= htmlspecialchars($product->setNaam, ENT_QUOTES, 'UTF-8') ?>">
+                  <img src="images/sets/<?= $product->setImage ?>" class="card-img-top images" alt="<?= htmlspecialchars($product->setNaam, ENT_QUOTES, 'UTF-8') ?>">
                   <div class="card-body">
-                    <h5 class="card-title"><?=($product->setNaam) ?></h5>
-                    <p class="card-text">€ <?= ($product->setPrijs) ?></p>
+                    <h5 class="card-title"><?=$product->setNaam ?></h5>
+                    <p class="card-text">€ <?= $product->setPrijs ?></p>
                     <a href="detail.php?id=<?= $product->set_id ?>" class="btn btn-primary">Bekijk product</a>
                   </div>
                 </div>

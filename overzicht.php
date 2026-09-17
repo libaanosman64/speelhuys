@@ -63,7 +63,7 @@ if ($themaId < 1) {
                             <div class="col-md-12">
                                 <form class="d-flex" method="get" action="overzicht.php">
                                     <div class="input-group">
-                                        <input class="form-control form-control-lg" type="search" name="zoek" value="<?= htmlspecialchars($zoekterm, ENT_QUOTES, 'UTF-8') ?>" placeholder="Search" aria-label="Search">
+                                        <input class="form-control form-control-lg" type="search" name="zoek" value="<?=$zoekterm?>" placeholder="Search" aria-label="Search">
                                         <button class="btn btn-primary px-4" type="submit">
                                             <i class="bi bi-search"></i>
                                         </button>
@@ -91,7 +91,7 @@ if ($themaId < 1) {
                                 <?php foreach ($themas as $thema) { ?>
                                     <li>
                                         <a class="dropdown-item" href="?thema=<?=($thema->Thema_id) ?>">
-                                            <?=($thema->Thema_naam) ?>
+                                            <?=$thema->Thema_naam ?>
                                         </a>
                                     </li>
                                 <?php } ?>
