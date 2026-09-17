@@ -78,6 +78,39 @@ body {
  height: 100%;
 }
 
+.overview-title-row {
+    text-align: center;
+}
+
+.product-grid {
+    margin-top: 100px;
+}
+
+.pagination-wrap {
+    margin-top: 25px;
+    padding: 20px 0 10px;
+}
+
+ul.pagination {
+    gap: 12px !important;
+    margin: 0 !important;
+}
+
+.pagination .page-item {
+    margin: 0 4px !important;
+}
+
+.pagination .page-link {
+    padding: 0.9rem 1.2rem !important;
+    min-width: 52px !important;
+    text-align: center !important;
+    line-height: 1.2 !important;
+}
+
+.border-shadow {
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.08);
+}
+
 .homepage {
     padding-top: 20px;
     padding-bottom: 60px;

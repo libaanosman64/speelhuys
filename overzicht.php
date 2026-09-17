@@ -49,9 +49,9 @@ if ($themaId < 1) {
             </div>
         </nav>
     </div>
-    <div class="container" style="margin-top: 200;">
-        <div class="container" style="width: 800;">
-            <div class="row textbox justify-content-center" style="text-align: center;">
+    <div class="container">
+        <div class="container">
+            <div class="row textbox justify-content-center overview-title-row">
                 <div class="col">
                     <h1>Speelhuys</h1>
                 </div>
@@ -133,10 +133,10 @@ if ($themaId < 1) {
     $producten = Producten::filter($zoekterm, $themaId, $prijsVolgorde, $leeftijd, $perPagina, ($pagina - 1) * $perPagina);
     ?>
     <div class="container">
-        <div class="row g-4" style="margin-top: 100px;">
+        <div class="row g-4 product-grid">
             <?php foreach ($producten as $product) { ?>
                 <div class="col-12 col-md-4">
-                    <div class="card  border-shadow ">
+                    <div class="card border-shadow">
                         <img src="images/sets/<?php echo $product->setImage; ?>" class="card-img-top images" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $product->setNaam; ?></h5>
@@ -146,7 +146,7 @@ if ($themaId < 1) {
                 </div>
             <?php } ?>
         </div>
-            <div class="container" style="margin-top: 25;">
+            <div class="container pagination-wrap">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
                         <li class="page-item <?php echo $pagina === 1 ? 'disabled' : ''; ?>">
